@@ -1,0 +1,103 @@
+footer{
+    
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    margin-top: 7em;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+footer h5 {
+    text-align: left;
+}
+
+.section-cont{
+    display: flex;
+    justify-content: center;
+    
+}
+
+footer .footer-links{
+    color:rgba(0,0,0,.4);
+    padding: 0.2em;
+}
+
+.copyright{
+    text-align: center;
+    padding: 1em;
+    color:rgba(0,0,0,.6);
+    margin-top: 2rem;
+}
+.mobile{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    padding: 0;
+}
+
+#mobile div{
+    display: flex;
+    flex-direction: column;
+    /* margin-top: -30px;
+    margin-left: -8px; */
+    
+}
+.android{
+    height: 40px;
+    margin: auto;
+    padding:0;
+    margin-top: 0px;
+    /* margin-left: -2px; */
+}
+
+.ios{
+    height: 100px;
+    margin: auto;
+    margin-top: -40px;
+    /* margin-left: -2px; */
+}
+
+#about div{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.sections{
+    margin: 0 4rem;
+}
+
+
+
+.footer-lists {
+    display:flex;
+    flex-direction: column;
+    margin-top: .7rem;
+}
+
+@media only screen and (max-width:570px) {
+    .section-cont{
+        display: flex;
+        flex-direction: column;
+        justify-content:flex-start ;
+        
+    }
+ .about {
+    margin-top: 1rem;
+ }
+ .others {
+    margin-top: 2rem;
+ }
+
+ footer h5 {
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+footer {
+    padding: 0 2rem;
+}
+
+
+}

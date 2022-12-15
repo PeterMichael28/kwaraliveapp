@@ -1,0 +1,295 @@
+{
+  "users": [
+    {
+      "email": "enitanpeters28@gmail.com",
+      "password": "$2a$10$DwlUYfn91JIyPaw4oqSH1ugOqU0HmPYdPiaFutfNTqTWMdoyorE5S",
+      "first_name": "Michael",
+      "last_name": "Peter",
+      "phone_number": "08036314163",
+      "address": "Fajol,obantoko Abeokuta",
+      "image": "http://res.cloudinary.com/dywawv0tg/image/upload/v1671016290/sdomdwylhbwi5ynxy9fo.png",
+      "id": 1
+    },
+    {
+      "email": "enitanpeters27@gmail.com",
+      "password": "$2a$10$C.h4Aen3vi9GHMNfB3LIQ.oTahmCctLMGAH8thL7SzFsqY.A1XBfO",
+      "first_name": "Michael",
+      "last_name": "Peter",
+      "phone_number": "08036314163",
+      "address": "Fajol,obantoko Abeokuta",
+      "business_name": "FARM",
+      "website_url": "www.heroicons.com",
+      "business_description": "a successsful and thriving business",
+      "category": "Education",
+      "business_logo": "http://res.cloudinary.com/dywawv0tg/image/upload/v1671016412/fgk9pruxfijoysmzgkbm.png",
+      "image": [
+        "http://res.cloudinary.com/dywawv0tg/image/upload/v1671016419/xdp3un1jn79bxollezdd.jpg",
+        "http://res.cloudinary.com/dywawv0tg/image/upload/v1671016419/qbeido0ihlyx7zqfoftq.png",
+        "http://res.cloudinary.com/dywawv0tg/image/upload/v1671016419/bnmwxo5ufmsvq3chdc0i.png"
+      ],
+      "nature_of_business": "Education",
+      "id": 2
+    }
+  ],
+  "topBusinesses": [
+    {
+      "id": 1,
+      "name": "Airtel",
+      "category": "TeleCom",
+      "logo": "https://tse4.mm.bing.net/th?id=OIP.V-rXEgNlJT2MObeMatxAOgHaHa&pid=Api&P=0",
+      "verification_status": "verified",
+      "address": "Fajol,obantoko Abeokuta",
+      "email": "enitanpeters28@gmail.com",
+      "description": "This is a startup  where we take customers satisfaction as priority",
+      "images": [
+        "https://tse2.mm.bing.net/th?id=OIP.0VtFarqAxKUjzx9tMdzn6AHaFj&pid=Api&P=0",
+        "https://tse4.mm.bing.net/th?id=OIP.0ku1AvUo__-ohxH4EqTXOAHaEo&pid=Api&P=0"
+      ],
+      "ratings": [
+        {
+          "id": 1,
+          "reviewer": "Peter Michael",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        },
+        {
+          "id": 2,
+          "reviewer": "James Nwafor",
+          "rating_value": 3,
+          "rating_date": "20-sept-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Glo",
+      "category": "Agriculture",
+      "logo": "https://tse3.mm.bing.net/th?id=OIP.0jl9haemnq0P4eYzzrfNOgHaGw&pid=Api&P=0",
+      "verification_status": "",
+      "address": "Fajol,obantoko Abeokuta",
+      "email": "enitanpeters28@gmail.com",
+      "description": "This is a startup  where we take customers satisfaction as priority",
+      "images": [
+        "https://tse3.mm.bing.net/th?id=OIP.WR0Zb_vBPtayvXlHHTs-RwHaE-&pid=Api&P=0",
+        "https://tse3.mm.bing.net/th?id=OIP.DIAPpwtEDSBNfYaYzFeMIQAAAA&pid=Api&P=0"
+      ],
+      "ratings": [
+        {
+          "id": 1,
+          "reviewer": "Peter Michael",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        },
+        {
+          "id": 2,
+          "reviewer": "Simon Peters",
+          "rating_value": 4,
+          "rating_date": "20-aug-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "PlatformLead",
+      "category": "Engineering",
+      "logo": "https://tse2.mm.bing.net/th?id=OIP.-G5ZJidvdT8R1xfPlFMV6QHaGB&pid=Api&P=0",
+      "verification_status": "verified",
+      "address": "Fajol,obantoko Abeokuta",
+      "email": "enitanpeters28@gmail.com",
+      "description": "This is a startup  where we take customers satisfaction as priority",
+      "images": [
+        "https://tse4.mm.bing.net/th?id=OIP.O7BSLGCqtkZ0JcB3JOeNRwHaEK&pid=Api&P=0",
+        "https://tse1.mm.bing.net/th?id=OIP._5RpdB5HThi4LO7MZDrgCgHaE8&pid=Api&P=0"
+      ],
+      "ratings": [
+        {
+          "id": 1,
+          "reviewer": "Peter Michael",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        },
+        {
+          "id": 2,
+          "reviewer": "Kabiru Sope",
+          "rating_value": 2,
+          "rating_date": "10-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Kwaralive",
+      "category": "Education",
+      "logo": "https://tse4.mm.bing.net/th?id=OIP.TnEPb1OnIUTRpNnOo6Tn9gHaGn&pid=Api&P=0",
+      "verification_status": "",
+      "address": "Fajol,obantoko Abeokuta",
+      "email": "enitanpeters28@gmail.com",
+      "description": "This is a startup  where we take customers satisfaction as priority",
+      "images": [],
+      "ratings": [
+        {
+          "id": 1,
+          "reviewer": "Peter Michael",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        },
+        {
+          "id": 1,
+          "reviewer": "Tola Ade",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Samsung",
+      "category": "Technology",
+      "logo": "https://tse4.mm.bing.net/th?id=OIP.mhAkqKTgruXPgzw6_89mewHaFH&pid=Api&P=0",
+      "verification_status": "verified",
+      "address": "Fajol,obantoko Abeokuta",
+      "email": "enitanpeters28@gmail.com",
+      "description": "This is a startup  where we take customers satisfaction as priority",
+      "images": [],
+      "ratings": [
+        {
+          "id": 1,
+          "reviewer": "Peter Michael",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        },
+        {
+          "id": 1,
+          "reviewer": "Adeola Kazeem",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Apple",
+      "category": "Entertainment",
+      "logo": "https://tse4.mm.bing.net/th?id=OIP.mhAkqKTgruXPgzw6_89mewHaFH&pid=Api&P=0",
+      "verification_status": "",
+      "address": "Fajol,obantoko Abeokuta",
+      "email": "enitanpeters28@gmail.com",
+      "description": "This is a startup  where we take customers satisfaction as priority",
+      "images": [
+        "https://tse2.mm.bing.net/th?id=OIP.soiWTJ-9AkqJMoAik6tdKwHaEu&pid=Api&P=0",
+        "https://tse4.mm.bing.net/th?id=OIP.ynKeZJahp5XjbbMfrjTEbwHaE5&pid=Api&P=0"
+      ],
+      "ratings": [
+        {
+          "id": 1,
+          "reviewer": "Peter Michael",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        },
+        {
+          "id": 1,
+          "reviewer": "Opeyemi Simi",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Amazon",
+      "category": "Finance",
+      "logo": "https://tse1.mm.bing.net/th?id=OIP.Aw28v08Kdv_x1heYex9JGAHaIE&pid=Api&P=0",
+      "verification_status": "verified",
+      "address": "Fajol,obantoko Abeokuta",
+      "email": "enitanpeters28@gmail.com",
+      "description": "This is a startup  where we take customers satisfaction as priority",
+      "images": [],
+      "ratings": [
+        {
+          "id": 1,
+          "reviewer": "Peter Michael",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        },
+        {
+          "id": 1,
+          "reviewer": "Aderiokin wasiu",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Jumia",
+      "category": "Business",
+      "logo": "https://tse2.mm.bing.net/th?id=OIP.9SqtE7wjPK4h1BTtcZ_1uAHaJ7&pid=Api&P=0",
+      "verification_status": "",
+      "address": "Fajol,obantoko Abeokuta",
+      "email": "enitanpeters28@gmail.com",
+      "description": "This is a startup  where we take customers satisfaction as priority",
+      "images": [],
+      "ratings": [
+        {
+          "id": 1,
+          "reviewer": "Peter Michael",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        },
+        {
+          "id": 1,
+          "reviewer": "Yinka Felele",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Tecno",
+      "category": "Marketing",
+      "logo": "https://tse4.mm.bing.net/th?id=OIP.Cz-cS0Ghh4INnyDkE69wpwHaFr&pid=Api&P=0",
+      "verification_status": "",
+      "address": "Fajol,obantoko Abeokuta",
+      "email": "enitanpeters28@gmail.com",
+      "description": "This is a startup  where we take customers satisfaction as priority",
+      "images": [
+        "https://tse2.mm.bing.net/th?id=OIP.sOJPe5j6PIoFgkgiUS9-nQHaE8&pid=Api&P=0",
+        "https://tse3.mm.bing.net/th?id=OIP.ZM67qj8z-hZGT-07p_zWiwHaFj&pid=Api&P=0",
+        "https://tse3.mm.bing.net/th?id=OIP.FObOX-CUWV0oCVRNUUGfdgHaE8&pid=Api&P=0"
+      ],
+      "ratings": [
+        {
+          "id": 1,
+          "reviewer": "Peter Michael",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        },
+        {
+          "id": 1,
+          "reviewer": "Okafor Yemi",
+          "rating_value": 5,
+          "rating_date": "20-dec-2019",
+          "rating_text": "Nice Service, Top notch customer service"
+        }
+      ]
+    }
+  ]
+}

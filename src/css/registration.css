@@ -1,0 +1,471 @@
+.user-form-cont{
+    /*background: linear-gradient(to right top, rgb(171, 189, 129), rgb(171, 189, 129, 0.8));*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left:0;
+    top:0;
+    overflow: auto;
+    background:rgb(171, 189, 129, 0.3);
+}
+
+.user-reg-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    
+}
+
+.picture-upload{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    background:linear-gradient(
+        to left top,
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0.4)
+    );
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 2em;
+
+}
+
+.picture-upload p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #333;
+}
+
+
+
+
+.inputs{
+    /*background:linear-gradient(
+        to left top,
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0.4)
+    );*/
+    background:rgb(171, 189, 129, 0.6);
+    margin-top: 2rem;
+    padding: 3rem;
+    width: 100%;
+    align-items: center;
+    height: auto;
+    border-radius: 2em;
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.inputs input, .business-description, .inputs select, .inputs option {
+    background:linear-gradient(
+        to left top,
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0.4)
+        );
+        border:none;
+        padding: 0.5em;
+        border-radius: 0.5em;
+        width: 90%;
+        
+        
+}
+
+.business-description{
+    resize: none;
+    margin-bottom: 1em;
+}
+
+.avatar{
+    height: 6em;
+    margin: auto;
+    
+}
+
+#file, #logo{
+    display: none;
+}
+
+.names, .merged-fields{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5em;
+    width: 90%;
+}
+
+
+.names input, .merged-fields input{
+    width: 45%;
+}
+
+#last-name, #phone, #confirm, #business-nature, #business-category{
+    margin-left: 10%;
+}
+
+.submit-registration, .disabled{
+    background: white;
+    border: none;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    color:rgb(171, 189, 129);
+    width:90%;
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+
+.disabled{
+    background:rgba(255,255, 255, .5);
+}
+
+.uploader{
+    background: rgb(38,130,255);
+    padding: 1em;
+    display: flex;
+    border-radius: 3em;
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.8);
+    color: white;
+    width: 220px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.business-images-uploader{
+    background: rgb(38,130,255);
+    padding: 1em;
+    display: flex;
+    border-radius: 3em;
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.8);
+    color: white;
+    width: 130px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 1em;
+    font-size:12px;
+    
+}
+
+
+.picture-cont, .business-picture-cont{
+    background:linear-gradient(to left bottom, 
+    rgba(171, 189, 129, 0.6), 
+    rgba(171, 189, 129, 0.2)
+        );
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 4rem;
+    cursor: pointer;
+    
+}
+
+.remove-image{
+    border:none;
+    background: none;
+    position: absolute;
+    top:150px;
+    left:190px;
+    font-size: 1em;
+    color: #f1c67a;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    
+}
+
+.profile-picture{
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    border: inherit;
+    
+}
+
+.payment{
+    border:none;
+}
+
+
+.registeration-status, .password-match{
+    background:rgb(171, 189, 129);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 1em;
+    color:#333;
+    width: 100%;
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.5);
+  
+}
+
+
+.closer{
+    margin: auto;
+    margin-left: auto;
+    margin-right: 1em;
+}
+
+.registeration-status p, .password-match p{
+    margin: auto;
+    padding:0.5em;
+    font-family: monospace;
+    text-align: center;
+    color: crimson;
+}
+
+#business-images{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.business-images-wrapper{
+    display: flex;   
+}
+
+.image-count{
+    display: flex;
+    justify-content: center;
+    background:linear-gradient(to right bottom, 
+        rgba(255, 255, 255, 0.9), 
+        rgba(255, 255, 255, 0.3)
+        );
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.5);
+    width: fit-content;
+    margin: auto;
+    padding: 0.5em;
+    border-radius: 1em;
+    
+}
+
+.upload-logo{
+    margin: auto;
+    font-weight: bold;
+    color:rgba(0,0,0,.5);
+}
+
+#logo-wrapper{
+    margin-top: 3em;
+}
+
+.complete-reg{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-gap:2em;
+}
+
+.complete-images{
+    display: flex;
+    grid-gap:2em;
+}
+
+.complete-reg button{
+    margin: auto;
+}
+
+.inputs .select-cont {
+    background:linear-gradient(to right bottom, 
+        rgba(255, 255, 255, 0.6), 
+        rgba(255, 255, 255, 0.3)
+        );
+        border:none;
+        padding: 0.5em;
+        border-radius: 0.5em;
+        width: 45%;
+        margin: auto;
+        color: rgba(0,0,0,.5);
+        cursor: pointer;
+        
+        
+}
+
+.radio-group {
+    display: none;
+    position: absolute;
+    overflow: auto;
+    height:300px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background:linear-gradient(to right bottom, 
+        rgba(255, 255, 255, 0.9), 
+        rgba(255, 255, 255, 0.8)
+        );
+    width: 500px;
+    transition: 3s;
+    
+}
+
+.radio-option{
+    
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1em;
+    margin-top: 0.5em;
+    align-items: center;
+    
+}
+
+.radio-option p{
+    text-align: right;
+}
+
+
+.registration-header {
+    margin: auto;
+}
+
+.next {
+    display: block;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    margin-left: 0;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.4em;
+
+}
+
+
+@media only screen and (max-width:360px) {
+    
+
+    .complete-images{
+        
+        
+        width: fit-content;
+        flex-direction: column;
+        margin: auto;
+       
+    }
+
+    .picture-cont{
+        margin-top: 2rem;
+    }
+
+    .business-picture-cont{
+        margin-top: 0;
+    }
+
+    
+
+    
+}
+
+
+@media only screen and (max-width:570px) {
+
+    
+    
+        .user-reg-form{
+            height: 100% ;
+            width: 100%;
+            border-radius: 0; 
+            position: absolute;      
+        }
+
+        .inputs input{
+            width: 90%;
+        }
+
+        .inputs{
+            margin-top: 0;
+            padding: 1em;
+            width: 100%;
+            border-radius: 0;
+            border-top:2px solid white;
+        }
+
+        .merged-fields, .names{
+            flex-direction: column;
+            margin-bottom: 0;
+        }
+
+        #last-name, #phone, #confirm, #business-nature, #business-category{
+            margin-left: 0;
+            
+        }
+
+        .names input, .merged-fields input, #business-category {
+            width: 100%;
+        }
+    
+        .cont-input-triangle{
+        
+            margin-top: 1rem;
+        }
+
+        .triangle{
+            height: 0;
+            width: 0;
+            border:10px solid;
+            border-color: transparent transparent white transparent;
+            margin: auto;
+            position: relative;
+        }
+
+        .registeration-status p, .password-match p{
+                font-size: 12px;
+        }
+
+
+        .radio-group {
+            
+            width: 300px;
+            
+        }
+        .radio-option p{
+            font-size: 13px;
+        }
+
+
+        #business-category {
+            margin-bottom: 1.5em;
+        }
+
+        .business-picture-cont{
+            width: 100px;
+            height: 100px;
+        }
+    
+        .business-picture-cont p{
+            font-size: 10px;
+        }
+
+        .submit-registration, .disabled {
+            font-size: 1.1rem;
+        }
+
+        .picture-cont, .business-picture-cont {
+                height: 150px;
+                width: 150px;
+        }
+         
+
+        
+        
+
+}
