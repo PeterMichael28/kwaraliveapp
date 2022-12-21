@@ -104,8 +104,11 @@ const UserRegistration = () => {
               setError( '' );
               setAuth( { data: data.user } );
               // setToken( data.accessToken );
-              sessionStorage.setItem( 'userToken', data.accessToken )
-              sessionStorage.setItem('userId', data.user.id)
+              localStorage.setItem(
+               "userToken",
+               data.accessToken
+              );
+              localStorage.setItem("userId", data.user.id);
               setAccountType( 'user' );
               // alert( 'Registration Successful' );
               navigate( '/' );

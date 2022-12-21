@@ -9,45 +9,39 @@ import AuthContext from '../store/AuthContext';
 const Nav = () => {
   const { auth, setAuth, accountType} = useContext( AuthContext )
 
-  const id = sessionStorage.getItem( 'userId' )
-  const token = sessionStorage.getItem( 'userToken' ) 
-  
-  
-  useEffect( () => {
+  const id = localStorage.getItem("userId");
+  const token = localStorage.getItem("userToken");
 
-    
-    const fetchData = async () => {
-
-      await fetch( `http://localhost:3000/600/users/${ id }`, {
-        headers: {
-          crossDomain: true,
-          'Accept': 'application/json',
-          authorization: `Bearer ${ token }`
-        }
-      } )
-        .then( response => {
-          // if(response.ok){
-          return response.json();
-          // }
-        } ).then( data => {
-              
-          if ( typeof data !== 'string' ) {
-           setAuth( data)
-          }
-         
-        } );
-    }
-    if ( id ) {
-      fetchData()
-    }
-
-}, [])
+  useEffect(() => {
+   const fetchData = async () => {
+    await fetch(`http://localhost:3000/600/users/${id}`, {
+     headers: {
+      crossDomain: true,
+      Accept: "application/json",
+      authorization: `Bearer ${token}`,
+     },
+    })
+     .then((response) => {
+      // if(response.ok){
+      return response.json();
+      // }
+     })
+     .then((data) => {
+      if (typeof data !== "string") {
+       setAuth(data);
+      }
+     });
+   };
+   if (id) {
+    fetchData();
+   }
+  }, []);
 
   const handleClick = () => {
-    setAuth( null )
-    sessionStorage.clear();
-    // console.log(auth)
-}
+   setAuth(null);
+   localStorage.clear();
+   // console.log(auth)
+  };
 
   return (
     <nav className={ auth === null ? 'justify-content-center' : ''}>

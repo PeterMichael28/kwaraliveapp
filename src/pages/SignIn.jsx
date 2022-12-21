@@ -62,8 +62,11 @@ const SignIn = () => {
               setError( '' )
               setIspending( false )
               setAuth( { data: data.user } ); //setting current user
-              sessionStorage.setItem('userToken', data.accessToken)
-              sessionStorage.setItem('userId', data.user.id)
+              localStorage.setItem(
+               "userToken",
+               data.accessToken
+              );
+              localStorage.setItem("userId", data.user.id);
               // setToken(data.accessToken)
               alert( 'Login Successful' );
               setAccountType( selectAccount )

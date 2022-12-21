@@ -152,8 +152,11 @@ const CompleteBusinessReg = () => {
             setAccountType('business')
             // console.log(data)
             setAuth( { data: data.user } )
-            sessionStorage.setItem( 'userToken', data.accessToken )
-            sessionStorage.setItem('userId', data.user.id)
+            localStorage.setItem(
+             "userToken",
+             data.accessToken
+            );
+            localStorage.setItem("userId", data.user.id);
             // alert( 'Registration Successful' );
             navigate('/')
             
