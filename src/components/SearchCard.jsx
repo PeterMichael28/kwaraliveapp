@@ -15,11 +15,11 @@ const SearchCard = ({businesses, query, searching}) => {
         {/*businesses.length > 0 && <p className='search-counter'>{businesses.length} search results found for {query}</p>*/}
         <div className='search-cont'>
         {
-                businesses.map((business)=>(
+                businesses?.map((business)=>(
                     <main className='each-search-cont' key={business.id}>
                         <div  className='business-search-container'>
                             <div className='average-rating'>
-                                    <p className='rating-value'>{business.id}</p>
+                                    <p className='rating-value'>{business.average_rating}</p>
                                     <FaStar className='star'/>
                             </div>
                             
@@ -31,15 +31,15 @@ const SearchCard = ({businesses, query, searching}) => {
                                      loading='lazy'
                                      > 
                                       </Image> : <img src={img13} className='business-logo' alt='loading..'/>}
-                            <Link to={'/business-details/' + business.id} className='business-name'>{
+                            <Link to={'/business-details/' + business.id} state={{business}} className='business-name'>{
                             
-                            business.name.length < 18 ?
+                            business.business_name.length < 18 ?
 
-                            business.name
+                            business.business_name
 
                             :
 
-                            business.name.slice(0,18) + '...'
+                            business.business_name.slice(0,18) + '...'
                             
                             }</Link>
                             

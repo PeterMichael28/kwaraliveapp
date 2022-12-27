@@ -12,33 +12,35 @@ import {
 import { Alert } from "react-bootstrap";
 import AuthContext from "../store/AuthContext";
 import img6 from "../assets/loader.gif";
+import axios from 'axios';
+import Back from '../components/Back';
 
 const UpdateUserProfile = () => {
  // const [userProfile, setuserProfile] = useState([])
 
  const location = useLocation();
- const userProfile = location.state.userProfile;
- const [first_name, setFirstName] = useState(
-  userProfile.first_name
- );
- const [last_name, setLastName] = useState(
-  userProfile.last_name
+  const userProfile = location.state.auth;
+  
+
+
+ const [full_name, setFullName] = useState(
+  userProfile.name
  );
  const [email, setEmail] = useState(userProfile.email);
  const [phone_number, setPhone] = useState(
   userProfile.phone_number
  );
- const [images, setImages] = useState(userProfile.image);
+ const [image, setImage] = useState(userProfile?.profile_picture);
+ const [images, setImages] = useState([]);
  const [address, setAddress] = useState(
   userProfile.address
  );
- const userData = {
+ const user_data = {
   email,
-  first_name,
-  last_name,
+  full_name,
   phone_number,
   address,
-  images,
+  image,
  };
  const [error, setError] = useState("");
  const [data, setData] = useState(null);
@@ -51,142 +53,65 @@ const UpdateUserProfile = () => {
  const { setAuth, auth, accountType, setAccountType } =
   useContext(AuthContext);
 
- const url =
-  "https://api.cloudinary.com/v1_1/dywawv0tg/image/upload";
-
- // console.log( id )
- const token = localStorage.getItem("userToken");
-
  const maxNumber = 1;
 
- const navigate = useNavigate();
+  const navigate = useNavigate();
 
- // image upload onchange function
+  const token = localStorage.getItem( "access_token" );
+  
+  const base_url = "http://api.kwaralive.com/v1/user/profile/update";
 
- //form submit handler
 
- // useEffect( () => {
- //   // console.log(token)
+  const onChange = (imageList, addUpdateIndex) => {
+    // data for submit
+    // console.log(imageList, addUpdateIndex);
+    setImage(imageList);  
+    
+  };
 
- //   const fetchData = async () => {
-
- //       await fetch( `http://localhost:3000/600/users/${id}`,
- //        {   method: 'PATCH',
- //           headers: {
- //               crossDomain: true,
- //               'Accept': 'application/json',
- //               authorization: `Bearer ${token}`
- //           }
- //       } )
- //          .then(response => {
- //               // if(response.ok){
- //                   return response.json()
- //               // }
- //          } ).then( data => {
-
- //           if ( typeof data !== 'string' ) {
- //               setuserProfile(data)
-
- //             // setFirstName( userProfile.first_name )
- //             setLastName( userProfile.last_name )
- //             setEmail( userProfile.email )
- //             setPhone( userProfile.phone_number )
- //             setAddress( userProfile.address )
-
- //             setFetching( false )
- //             // console.log(data)
- //             }
-
- //               } )
-
- //   }
- //   if ( token ) {
-
- //       fetchData()
- //   }
-
- // }, [isFetching] )
-
- const onChange = (imageList, addUpdateIndex) => {
-  // data for submit
-  // console.log(imageList, addUpdateIndex);
-
-  const formData = new FormData();
-  formData.append("file", imageList[0].data_url);
-  formData.append("upload_preset", "m8ajjegp");
-
-  fetch(url, {
-   method: "POST",
-   body: formData,
-  })
-   .then((response) => {
-    return response.json();
-   })
-   .then((data) => {
-    setData(data.url);
-    setImages(data.url);
-    // console.log(data)
-   });
- };
-
- const handleSubmit = (e) => {
+ const handleSubmit = async (e) => {
   e.preventDefault();
+   setFetching( true )
 
-  // if (images.length > 0){
-  //   // let image = images[0].data_url.split(',')[1]
-  //   userData.image = data
-  // } else {
-  //   setError('Please Upload your picture')
-  // }
-
-  try {
-
-      setIspending(true)
-      fetch( `http://localhost:3000/600/users/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-type':'application/json',
-          crossDomain: true,
-          withCredentials: true,
-          authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(userData)
-      }).then(response => {
-        return response.json()
-        // if(response.ok){
-        // }
-    }).then(data => {
-
-      setIspending( false )
-      if ( typeof data === 'string' ) {
-        setError( data );
-      } else {
-        // setRegisterationResponse( data )
-        setError( '' );
-        // setAuth( { data: data.user } )
-        // setAccountType('user')
-        // alert( 'Registration Successful' );
-        navigate( `/user-profile/${id}` );
-      }
-    })
-  } catch (error) {
-    setError( error.message)
-    // console.log(error)
-  }
-
-  console.log(userData);
+   if (image?.length > 0){
+    const img = image[0].data_url.split(',')[1]
+    user_data.image = img
+  } else {
+   setError("Please Upload your picture");
+   }
+   
+   try {
+     const response = await axios.post( base_url, user_data, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+       }
+      });
+    //  console.log( response )
+     setError('')
+     setFetching( false )
+     navigate('/')
+   } catch (error) {
+    //  console.log( error.response.data.msg )
+     setError(error.response.data.msg)
+     setFetching( false )
+   }
+   
+  //  console.log(user_data)
+  //  setFetching( false)
  };
 
  return (
   <div className="user-form-cont">
-   {/* { formComplete && <Alert variant='success'>Registration Successful</Alert>} */}
+     {/* { formComplete && <Alert variant='success'>Registration Successful</Alert>} */ }
+     
+     <Back />
 
    {!isFetching ? (
     <form className="user-reg-form" onSubmit={handleSubmit}>
      {/* image uploader */}
      <ImageUploading
       multiple={false}
-      value={images}
+      value={image}
       onChange={onChange}
       maxNumber={maxNumber}
       dataURLKey="data_url"
@@ -195,15 +120,15 @@ const UpdateUserProfile = () => {
        // write your building UI
        <div className="upload__image-wrapper">
         <div className="picture-cont">
-         {images?.length > 0 ? (
+         {image?.length > 0 ? (
           <>
            <img
             onClick={() => {
-             setImages([]);
+             setImage([]);
              return onImageUpload();
             }}
             className="profile-picture"
-            src={images}
+            src={imageList[0].data_url}
             alt=""
             width="100"
            />
@@ -211,7 +136,7 @@ const UpdateUserProfile = () => {
          ) : (
           <img
            onClick={() => {
-            setImages([]);
+            setImage([]);
             return onImageUpload();
            }}
            className="avatar"
@@ -231,24 +156,12 @@ const UpdateUserProfile = () => {
        <input
         type="text"
         name="first"
-        placeholder="First Name"
-        onChange={(e) => setFirstName(e.target.value)}
-        value={first_name}
+        placeholder="Full Name"
+        onChange={(e) => setFullName(e.target.value)}
+        value={full_name}
         required
+        className='mb-4'
        />
-       <br />
-       <input
-        type="text"
-        placeholder="Last Name"
-        onChange={(e) => setLastName(e.target.value)}
-        value={last_name}
-        id="last-name"
-        required
-       />
-       <br />
-       {/* </div> */}
-
-       {/* <div className='merged-fields'>  */}
        <input
         type="email"
         placeholder="Email"
@@ -265,9 +178,10 @@ const UpdateUserProfile = () => {
         id="phone"
         value={phone_number}
         required
+        className='ms-0'
        />
        <br />
-       {/* </div> */}
+       
        <input
         type="text"
         placeholder="address"
@@ -277,27 +191,26 @@ const UpdateUserProfile = () => {
        />
        <br />
 
-       {(userData.first_name?.length > 0 &&
-       userData.first_name !== userProfile.first_name) ||
-       (userData.last_name?.length > 0 &&
-       userData.last_name !== userProfile.last_name) ||
-       (userData.phone_number?.length > 0 &&
-       userData.phone_number !== userProfile.phone_number) ||
-       (userData.address?.length > 0 &&
-       userData.address !== userProfile.address) &&
+       {(user_data.full_name?.length > 0 &&
+       user_data.full_name !== userProfile.name) ||
+       (user_data.phone_number?.length > 0 &&
+       user_data.phone_number !== userProfile.phone_number) ||
+       (user_data.address?.length > 0 && user_data.address !== userProfile.address) ||
+        (user_data.image?.length > 0 &&
+          user_data.image !== userProfile.profile_picture) &&
        !isPending ? (
         <button className="submit-registration">
          Update Profile
         </button>
-       ) : userData.first_name?.length > 0 &&
-         userData.first_name !== userProfile.first_name &&
-         userData.last_name?.length > 0 &&
-         userData.last_name !== userProfile.last_name &&
-         userData.phone_number?.length > 0 &&
-         userData.phone_number !==
+       ) : user_data.full_name?.length > 0 &&
+         user_data.full_name !== userProfile.full_name &&
+         (user_data.image?.length > 0 &&
+          user_data.image !== userProfile.profile_picture) &&
+         user_data.phone_number?.length > 0 &&
+         user_data.phone_number !==
           userProfile.phone_number &&
-         userData.address?.length > 0 &&
-         userData.address !== userProfile.address &&
+         user_data.address?.length > 0 &&
+         user_data.address !== userProfile.address &&
          isPending ? (
         <button disabled className="disabled">
          Updating Profile

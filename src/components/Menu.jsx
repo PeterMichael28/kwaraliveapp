@@ -8,7 +8,7 @@ import { menus } from './datas';
 import img12 from '../assets/loader.gif'
 import img13 from '../assets/logo.jpg'
 
-
+import axios from "axios";
 
 
 
@@ -20,27 +20,28 @@ const Menu = () => {
     const [categories, setCategories] = useState([])
     const [isFetching, setFetching] = useState(true)
     const [topBusinesses, setTopBusinesses] = useState([])
-    const [isFetchingBusinesses, setFetchingBusinesses] = useState(true)
+    const [ isFetchingBusinesses, setFetchingBusinesses ] = useState( false )
+    
+    const base_url = "http://api.kwaralive.com/v1/business/top-100";
 
-    useEffect(()=>{
+    useEffect( () => {
         
-        fetch('http://localhost:3000/topBusinesses', {headers : {
-            crossDomain:true, 
-            'Accept': 'application/json'
+        setFetchingBusinesses( true )
+        const fetchData = async () => {
+
+
+            try {
+                const res = await axios.get( base_url );
+                setTopBusinesses( res.data.top_100 );
+                // console.log(res.data.top_100)
+                setFetchingBusinesses( false );
+            } catch ( error ) {
+                // console.log( error );
+                setFetchingBusinesses( false );
+            }
         }
-           })
-           .then(response => {
-                if(response.ok){
-                    return response.json()
-                }
-            }).then(
-                data => {
-                    setTopBusinesses(data)
-                    setFetchingBusinesses( false )
-                    setCategories(data.category)
-                   
-                    
-                })
+        
+        fetchData()
             
     }, [] )
     // console.log(topBusinesses)
@@ -76,7 +77,7 @@ const Menu = () => {
           
           {!isFetchingBusinesses ?  
             <div className='category-wrapper'>
-                {topBusinesses.map((data)=>(
+                {topBusinesses.slice(1, 20).map((data)=>(
                     <div key={data.id} className='categories'>
                         <p>{data.category}</p>
                     </div>
@@ -95,7 +96,7 @@ const Menu = () => {
       {/* <div className='loader-wraper'><img className='loader' src={ img12 } /></div> */}
       
       <div className='top-businesses'>
-                    <Carousel wrap={true} indicators={false} interval={3000}>
+                    <Carousel wrap={true} indicators={false} interval={3000} fade>
                 {topBusinesses.map((business)=>(
                     <Carousel.Item key={business.id}>
                         {
@@ -106,7 +107,7 @@ const Menu = () => {
 
                     <Carousel.Caption>
             
-                    <Link className='business-names'  to={'/business-details/' + business.id } ><h4>{business.name}</h4></Link>
+                    <Link className='business-names'  to={'/business-details/' + business.id} state={{business}} ><h4>{business.business_name}</h4></Link>
                         
                     </Carousel.Caption>
                 </Carousel.Item>

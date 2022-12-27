@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png'
+import logo3 from '../assets/logo.jpg'
 import logo2 from '../assets/search.png'
 import '../css/Nav.css'
 import AuthContext from '../store/AuthContext';
@@ -10,32 +11,8 @@ const Nav = () => {
   const { auth, setAuth, accountType} = useContext( AuthContext )
 
   const id = localStorage.getItem("userId");
-  const token = localStorage.getItem("userToken");
+  const token = localStorage.getItem("access_token");
 
-  useEffect(() => {
-   const fetchData = async () => {
-    await fetch(`http://localhost:3000/600/users/${id}`, {
-     headers: {
-      crossDomain: true,
-      Accept: "application/json",
-      authorization: `Bearer ${token}`,
-     },
-    })
-     .then((response) => {
-      // if(response.ok){
-      return response.json();
-      // }
-     })
-     .then((data) => {
-      if (typeof data !== "string") {
-       setAuth(data);
-      }
-     });
-   };
-   if (id) {
-    fetchData();
-   }
-  }, []);
 
   const handleClick = () => {
    setAuth(null);
@@ -45,8 +22,8 @@ const Nav = () => {
 
   return (
     <nav className={ auth === null ? 'justify-content-center' : ''}>
-      {auth? auth !== null && auth.business_name ? <Link to={`/business-profile/${auth.id}`} ><img className='pro-img me-3' src={ auth.business_logo } alt='' /></Link> :
-              <Link to={`/user-profile/${auth.id}`} ><img className='pro-img me-3' src={ auth.image } alt='' /></Link> : ''  }
+      {auth? auth !== null && auth.business_name ? <Link to={`/business-profile/${auth.id}`} ><img className='pro-img me-3' src={ auth.logo } alt='' /></Link> :
+              <Link to={`/user-profile/${id}`} ><img className='pro-img me-3' src={ auth.profile_picture ===null? logo3 : auth.profile_picture } alt='' /></Link> : ''  }
             <ul>
                 <li className='nav-links'><Link className='link' to='/'>Home</Link></li>
                 { !auth && <li className='nav-links'><Link className='link' to='/sign-up'>Sign Up</Link></li>}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { RadioGroup, Radio } from '@mui/material';
 import { topBusinesses } from './datas';
 import RegisterationStatus from './RegistrationStatus';
+import axios from "axios";
 
 
 const BusinessRegistration = () => {
@@ -21,6 +22,7 @@ const BusinessRegistration = () => {
     const [ categories, setCategories ] = useState( [] )
     
 
+    const categories_base_url = "http://api.kwaralive.com/v1/business-categories";
 
     
     const showCategories=()=>{
@@ -28,9 +30,20 @@ const BusinessRegistration = () => {
         categoryContainer.style.display = 'block'
   }
   
-  useEffect(()=>{
-          setCategories(topBusinesses)
-          // console.log(categories)
+  useEffect( () => {
+
+    const controller = new AbortController()
+    const { signal } = controller
+    
+    const fetchCategories = async () => {
+      const res = await axios.get( categories_base_url )
+      setCategories(res.data.categories)
+      // console.log(res.data.categories)
+    }
+    
+    fetchCategories()
+
+    return () => controller.abort()
 }, [])
 
 
@@ -101,7 +114,7 @@ const BusinessRegistration = () => {
                     aria-disabled
                     style ={{background:'white'}}
                     to='/sign-up/register-business/complete-registration'
-                    state={{businessData: {first_name, last_name, email, phone_number, address, password, business_name, website_url, business_description, category}}}
+                    state={{ data: {first_name, last_name, email, phone_number, address, password, business_name, website_url, business_description, category}}}
                     >
                       Next
                     </Link>

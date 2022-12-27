@@ -2,51 +2,34 @@
 import React, { useEffect, useState } from 'react';
 import SearchCard from './SearchCard';
 import img13 from '../assets/search.png'
+import axios from 'axios';
 
 const SearchInput = () => {
     const [query, setQuery] = useState('');
     const [result, setResult] = useState([]);
-    const [datas, setDatas] = useState([]);
-    const [searching, setSearching] = useState(false)
+    const [ searching, setSearching ] = useState( false )
+    
     
 
-    const handleSubmit=(e)=>{
+    const handleSubmit=async (e)=>{
         e.preventDefault()
         
         setSearching( true )
-        console.log(query)
-        fetch('http://localhost:3000/topBusinesses',{
-            method: 'GET',
-            headers:{
-                'Content-type':'application/json',
-                crossDomain:true       
-            }
-        }).then(response => {
-           
-                return response.json()
-        }).then(data =>{
+
+        try {
+            const res = await axios.get( `http://api.kwaralive.com/v1/business/search?search=${ query }` )
             
-            // if ( data.length > 0 ) {
-            //     setDatas(data.filter((dat) => dat.includes(query.toLowerCase())))
-            //     datas.length > 0 ? setResult(datas) : setResult(['no result'])
-            // }
-
-            const res = data.filter( ( dat ) => dat.name.toLowerCase().includes( query.toLowerCase() ) )
-            console.log(res)
-
-            console.log( data )
-            if ( res.length > 0 ) {
-                setResult(res)
+            if ( res.data.search_result.length > 0 ) {
                 
+                setResult( res.data.search_result )
             } else {
-                setResult(['no result'])
+                setResult( [ 'no result' ] )
             }
-        
-            setSearching(false)
-            setQuery('')
-        
-        } )
-
+            setSearching( false )
+        } catch (error) {
+            console.log(error)
+            setSearching( false )
+        }
     }
 
 
@@ -68,13 +51,13 @@ const SearchInput = () => {
         </form>
 
         {
-            (result.length > 0 && result[0] !== 'no result') ?
+            (result?.length > 0 && result[0] !== 'no result') ?
              
              <p className='search-counter'>{result.length} search results found for {query}</p>
 
              :
 
-             (result.length > 0 && result[0] === 'no result') && <p className='search-counter'>no search results found for {query}</p>
+             (result?.length > 0 && result[0] === 'no result') && <p className='search-counter'>no search results found for {query}</p>
 
     
 

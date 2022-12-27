@@ -3,6 +3,7 @@ import RegisterationStatus from './RegistrationStatus';
 import ImageUploading from 'react-images-uploading';
 import { useLocation, useNavigate } from 'react-router-dom';
 import AuthContext from '../store/AuthContext';
+import axios from "axios";
 
 const CompleteBusinessReg = () => {
 
@@ -12,47 +13,33 @@ const CompleteBusinessReg = () => {
     const [registrationResponseMessage, setRegistrationResponseMessage] = useState('');
     const [isPending, setIsPending] = useState(false);
   const [ error, setError ] = useState( '' )
-  const [ data, setData ] = useState( null )
+  const [ dataUrl, setDataUrl ] = useState( null )
   const [images, setImages] = useState([])
 
   const navigate = useNavigate()
 
   const url = "https://api.cloudinary.com/v1_1/dywawv0tg/image/upload";
+  const base_url = "http://api.kwaralive.com/v1/business/register";
   
   const {setAuth, auth, accountType, setAccountType} = useContext(AuthContext)
 
     // let images = []
     const maxNumber = 10;
     
-    // let businessData = props.location.businessData
-    // console.log(businessData)
+    // let data = props.location.data
+    // console.log(data)
 
     
     const location  = useLocation()
-    const businessData = location.state.businessData
+    const data = location.state.data
 
 
     //business logo handler
     const onChangeLogo = (imageList, addUpdateIndex) => {
         // data for submit
         // console.log(imageList, addUpdateIndex);
-        const formData = new FormData();
-        formData.append( "file", imageList[0].data_url );
-        formData.append( "upload_preset", "m8ajjegp" );
-        
-        fetch(url, {
-          method: "POST",
-          body: formData
-        })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            setData( data.url )
-            // console.log(data)
-          } );
         setBusinessLogo(imageList);
-        //businessData.logo =  businessLogo
+        //data.logo =  businessLogo
         
     };
     
@@ -61,120 +48,73 @@ const CompleteBusinessReg = () => {
         // data for submit
         // console.log(imageList, addUpdateIndex);
       
-      for ( let i = 0; i < imageList.length; i++ ) {
-        let file = imageList[ i ];
-
-        // console.log(file.data_url.split(',')[1])
-
-          const formData = new FormData();
-        formData.append( "file", file.data_url );
-        formData.append( "upload_preset", "m8ajjegp" );
-        
-        fetch(url, {
-          method: "POST",
-          body: formData
-        })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            // setData( data )
-            // images.push( data.url )
-            // console.log(images)
-            setImages((pre) => [...pre, data.url])
-          } );
-      }
       
       setBusinessImages( imageList );
-      
-      // console.log(imageList)
         
-    };
+  };
+  
+  const businessImagesToArray=()=>{
+    businessImages.forEach((businessImage)=>{
+      images.push(businessImage.data_url.split(',')[1])
+    })
+
+    data.image = images
+    data.nature_of_business = data.category
     
 
-    //business images converted to an array
-    // const businessImagesToArray=()=>{
-    //     businessImages.forEach((businessImage)=>{
-    //       images.push(businessImage.data_url.split(',')[1])
-    //     })
-  
-    //     businessData.image = images
-    //     businessData.nature_of_business = businessData.category
-        
-  
-    //     if (businessLogo.length > 0){
-    //       // businessData.business_logo = businessLogo[0].data_url.split(',')[1]
-    //       businessData.business_logo = businessLogo[0].data_url
-    //     }
-  
-    //     return businessData
-    // }
+    if (businessLogo.length > 0){
+      data.business_logo = businessLogo[0].data_url.split(',')[1]
+    }
+
+    return data
+  }
+    
+
 
 
     //form submit handler    
     const handleSubmit= async () =>{
+      setIsPending( true )
       
-        setIsPending(true)
-      //   const completeBusinessData = await businessImagesToArray()
-   
-      // console.log( completeBusinessData )
+      const completeBusinessData = await businessImagesToArray()
+      
+      // console.log('data', data )
 
-      if (businessLogo.length > 0){
-              businessData.business_logo = data
+              try{
+            const response = await axios.post( base_url, data, {
+              headers: {
+                'Content-type':'application/json',
+                crossDomain: true,
+                }
+              } );
+              // if ( typeof response.data.message === 'string' ) {
+              //   setError( response.data.message );
+              //   // console.log( response)
+              // } else {
+              //   // localStorage.setItem("access_token", response.data.login_details.access_token);
+              //   // localStorage.setItem("userId", response.data.login_details.id);
+              //   setError( '' );
+              // console.log( response )
+              //   // navigate( '/' );
+              // }
+             setIsPending(false);
+           } catch (error) {
+            setError(error.response.data?.message);
+            // console.log(error.response.data.message)
+            setIsPending(false);
             }
-      if ( images.length > 0 ) {
-        businessData.image = images
-        
-      }
-          businessData.nature_of_business = businessData.category
-            
-      const completeBusinessData = businessData
-      
-      // console.log( completeBusinessData )
-      try {
-        fetch('http://localhost:3000/users', {
-          method: 'POST',
-          headers: {
-            'Content-type':'application/json',
-            crossDomain:true
-          },
-          body: JSON.stringify(completeBusinessData)
-        }).then(response => {
-          setIsPending(false)
-         
-              return response.json()
-        } ).then( data => {
-          if ( typeof data === 'string' ) {
-            setError( data)
-          } else {
-            setRegistrationStatus(data)
-            setError( '' )
-            setAccountType('business')
-            // console.log(data)
-            setAuth( { data: data.user } )
-            localStorage.setItem(
-             "userToken",
-             data.accessToken
-            );
-            localStorage.setItem("userId", data.user.id);
-            // alert( 'Registration Successful' );
-            navigate('/')
-            
-          }
-         
-        //  setRegistrationResponseMessage('Registration Successful')
-      })
-        
-      } catch (error) {
-        setError( error )
-      }
-  
+
+      // console.log(data)
+
+      setIsPending(false)
+     
        
       }
     
   return (
     <div className='user-form-cont'>
-    <div className='complete-reg'>
+      <div className='complete-reg'>
+        {/* <div>{ error && error}</div> */}
       <div className='complete-images'>
       <ImageUploading
                 multiple={false}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import '../css/businessDetails.css'
 import { FaStar } from 'react-icons/fa';
 import ReactMarkdown from "react-markdown";
@@ -19,56 +19,22 @@ const BusinessDetails = () => {
     const [businessProfile, setBusinessProfile] = useState([])
     const [isFetching, setFetching] = useState(true)
     const [wallet_id, setWallet] = useState('')
-    const { id } = useParams()
 
+
+    const location  = useLocation()
+    const data = location.state.business
+
+    // console.log(data)
 
     useEffect( () => {
-        
-        const fetchData = async () => {
-
-            await fetch( `http://localhost:3000/topBusinesses/${id}`, {
-                headers: {
-                    crossDomain: true,
-                    'Accept': 'application/json'
-                }
-            } )
-               .then(response => {
-                    // if(response.ok){
-                        return response.json()
-                    // }
-                }).then(
-                    data => {
-                        setBusinessProfile(data)
-                        setFetching(false)
-                        
-               
-                    } )
-
-    //                 await fetch(`${prod}/v1/get-wallet-details?owner_id=${id.slice(5,20)}`, {headers : {
-    //                     crossDomain:true, 
-    //                     'Accept': 'application/json'
-    //                 }
-    //                     })
-    //                     .then(response => {
-    //                         if(response.ok){
-    //                             return response.json()
-    //                         }
-    //                     }).then(
-    //                         data => {
-    //                             setWallet(data.wallet_details.wallet_id)
-    //                             console.log(wallet_id)
-    //                             setFetching(false)                 
-    //                         })
+        if ( data ) {
             
+            setBusinessProfile( data )
+            // setFetching( false )
         }
+        
+    }, [])
 
-      fetchData()
-
-               
-            
-    }, [id])
-
-        // console.log(businessProfile)
     
     //setting image modal click event
 
@@ -92,9 +58,9 @@ const BusinessDetails = () => {
             </div>
 
 
-            {
+            {/* {
 
-                !isFetching ? 
+                !isFetching ?  */}
 
                 <div className='business-profile-wrapper'>
                     <div className='upper-card'>
@@ -125,7 +91,7 @@ const BusinessDetails = () => {
                         <div className='verification-status'>{businessProfile.verification_status == 'verified' ? <img src = {img2} alt=''/>: <p></p>}</div>
                         <div className='profile-details'>
                             <div className='span'>
-                                <h3 className='owners-name'>{businessProfile. name}</h3>
+                                <h3 className='owners-name'>{businessProfile.business_name}</h3>
                                 <p className='business-profile-categories'>{businessProfile.category}</p>
                             </div>
                             <div className='address-email-wrapper'>
@@ -141,7 +107,7 @@ const BusinessDetails = () => {
                            
                             
                             {/*<p><ReadMoreReact className='business-profile-description' text={businessProfile.business_description}/></p>*/}
-                            <ReactMarkdown className='business-profile-description' children={businessProfile.description}/>
+                            <ReactMarkdown className='business-profile-description' children={businessProfile.business_description}/>
                                   
                                 
                         
@@ -150,7 +116,7 @@ const BusinessDetails = () => {
                     <div className='lower-card3'>
                     <h5 className='rating-header'>Reviews</h5>
                     {
-                        businessProfile.ratings && businessProfile.ratings.length > 0 ? businessProfile.ratings.map((rating)=>(
+                        businessProfile.ratings && businessProfile.ratings?.length > 0 ? businessProfile.ratings.map((rating)=>(
                             <div key={rating.id}>
                                 <div>
                                     <div className='ratings'>
@@ -190,7 +156,7 @@ const BusinessDetails = () => {
                         <h5 className='business-images-header'>Business Images</h5>
                         <div className='business-profile-images'>
                             {
-                                businessProfile.images.length > 0 ? businessProfile.images.map((image, i)=>(
+                                businessProfile.images?.length > 0 ? businessProfile.images.map((image, i)=>(
                                     <div className='business-profile-image' key={i}>
                                             <Image
                             
@@ -210,12 +176,13 @@ const BusinessDetails = () => {
                         </div>
                         
                     </div>
-                </div> :  <div className='loader-wraper-bg'><img className ='loader-gif' src ={img6} alt=''/></div>
+                  </div>
+                {/* //   : <div className='loader-wraper-bg'><img className='loader-gif' src={ img6 } alt='' /></div>
 
                 
 
 
-                }
+                // } */}
                 
         </div>
   )

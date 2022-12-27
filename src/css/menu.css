@@ -115,12 +115,12 @@
 }
 
 .top-businesses .carousel-item{
-    padding:7em;
+    padding: 6rem 7rem;
 
 }
 .top-businesses{
     background: rgba(0,0,0,.9);
-    margin-top: 3em;
+    margin-top: 3rem;
     width: 100%;
     z-index: 100000;
     
@@ -139,8 +139,8 @@
 
 .top-business-logo{
     border-radius: 50%;
-    height: 120px;
-    width: 120px;
+    height: 220px;
+    width: 220px;
     /* object-fit: fill; */
 }
 @media only screen and (max-width:570px) {
